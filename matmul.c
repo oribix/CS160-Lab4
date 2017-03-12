@@ -75,9 +75,10 @@ int main()
 
 int initialize(double * matrix)
 {
-	srand((unsigned)time(NULL));
-	for(int i=0; i<N; i++)
-	  for(int j=0; j<N; j++)
+	int i, j;
+  srand((unsigned)time(NULL));
+	for(i=0; i<N; i++)
+	  for(j=0; j<N; j++)
 	  {
 		  matrix[i*N+j]=rand()/3000.0;
 	  }
@@ -87,8 +88,9 @@ int initialize(double * matrix)
 
 int _initialize(double * matrix)
 {
-	for(int i=0; i<N; i++)
-	  for(int j=0; j<N; j++)
+	int i, j;
+  for(i=0; i<N; i++)
+	  for(j=0; j<N; j++)
 	  {
 		  matrix[i*N+j]=0.0;
 	  }
