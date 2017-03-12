@@ -21,6 +21,7 @@ int main(){
     partialsum[i] = 4.0/(1.0 + x * x);
   }
 
+  #pragma omp parallel for reduction(+:sum)
   for(i = 0; i < numSteps; i++)
     sum += partialsum[i];
 
