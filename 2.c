@@ -15,15 +15,11 @@ int main(){
   omp_set_num_threads(4);
   double start = omp_get_wtime();
 
-  #pragma omp parallel for private(i)
+  #pragma omp parallel for reduction (+:sum)
   for(i = 0; i < numSteps ; i++){
     double x = (i + 0.5) * step;
-    partialsum[i] = 4.0/(1.0 + x * x);
+    sum += 4.0/(1.0 + x * x);
   }
-
-  #pragma omp parallel for reduction(+:sum)
-  for(i = 0; i < numSteps; i++)
-    sum += partialsum[i];
 
   pi = step * sum;
 

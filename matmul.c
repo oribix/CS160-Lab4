@@ -40,10 +40,19 @@ int main()
     //////////////////////////////////////////////////////////////////////////////////////
     // please change this into a parallel version
 	gettimeofday(&start, NULL);
-	for(i=0; i<N; i++)
-	  for(j=0; j<N; j++)
-		for(k=0; k<N; k++)
-		  Cp[i*N+j]+=A[i*N+k]*B[k*N+j];
+  double sum=0.0;
+  #pragma omp parallel for reduction(+:sum) num_threads(4) private(i, j , k)
+	for(i=0; i<N; i++){
+	  for(j=0; j<N; j++){
+      sum = 0.0;
+      for(k=0; k<N; k++){
+        int a = i * N + k;
+        int b = k * N + j;
+        sum+=A[a]*B[b];
+      }
+      Cp[i*N+j]=sum;
+    }
+  }
 	gettimeofday(&end, NULL);
 
 	timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
@@ -59,6 +68,7 @@ int main()
                 continue;
             else {
                 printf("ERRORS DETECTED!!!!!!!!!!!!!\n");
+                printf("%f\n", Cs[i*N+j] - Cp[i*N+j]);
                 return -1;
             }
       }
