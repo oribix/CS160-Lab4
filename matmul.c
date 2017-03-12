@@ -41,13 +41,14 @@ int main()
     // please change this into a parallel version
 	gettimeofday(&start, NULL);
   double sum=0.0;
-  #pragma omp parallel for reduction(+:sum) num_threads(4) private(i, j , k)
+  #pragma omp parallel for reduction(+:sum)\
+   num_threads(4) private(i, j , k)
 	for(i=0; i<N; i++){
 	  for(j=0; j<N; j++){
-      sum = 0.0;
+      sum=0.0;
       for(k=0; k<N; k++){
-        int a = i * N + k;
-        int b = k * N + j;
+        int a=i*N+k;
+        int b=k*N+j;
         sum+=A[a]*B[b];
       }
       Cp[i*N+j]=sum;
