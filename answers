@@ -1,0 +1,10 @@
+4)
+No.
+"j" relies on previous iterations of j.
+A change to the algorithm to remove dependence or "reduction (+:j)" is necessary
+
+5)
+a) a is shared. The rest are private.
+b) a=1, b=undef, c=3, d=undef
+
+6)
