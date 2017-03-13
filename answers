@@ -8,3 +8,6 @@ a) a is shared. The rest are private.
 b) a=1, b=undef, c=3, d=undef
 
 6)
+  Add #include "omp.h" to the top of the file.
+  Change "#pragma omp parallel" to "#pragma omp parallel private(x, i)".
+  Add "#pragma omp atomic" before "full_sum += partial_sum;"
