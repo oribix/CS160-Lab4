@@ -1,7 +1,7 @@
 4)
 No.
 "j" relies on previous iterations of j.
-A change to the algorithm to remove dependence or "reduction (+:j)" is necessary
+This dependence needs to be removed.
 
 5)
 a) a is shared. The rest are private.
