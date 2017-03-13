@@ -9,7 +9,7 @@ int _initialize(double * matrix);
 
 int main()
 {
-	int i, j, k;
+  int i, j, k;
 	double *A, *B, *Cs, *Cp;
 	struct timeval start, end;
 	double timeCost;
@@ -38,27 +38,32 @@ int main()
 
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
-    // please change this into a parallel version
-	gettimeofday(&start, NULL);
-  double sum=0.0;
-  #pragma omp parallel for reduction(+:sum)\
-   num_threads(4) private(i, j , k)
-	for(i=0; i<N; i++){
-	  for(j=0; j<N; j++){
-      sum=0.0;
-      for(k=0; k<N; k++){
-        int a=i*N+k;
-        int b=k*N+j;
-        sum+=A[a]*B[b];
-      }
-      Cp[i*N+j]=sum;
-    }
-  }
-	gettimeofday(&end, NULL);
+    // please change this into a parallel versiona
+  int numthreads;
+  for(numthreads = 1; numthreads <= 8; numthreads++){
+    omp_set_num_threads(numthreads);
 
-	timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
-	timeCost/=1000000;
-	printf("The parallel version of matrix multiplication costs %lf seconds\n", timeCost);
+    gettimeofday(&start, NULL);
+    double sum=0.0;
+    #pragma omp parallel for reduction(+:sum) private(i, j, k)
+    for(i=0; i<N; i++){
+      for(j=0; j<N; j++){
+        sum=0.0;
+        for(k=0; k<N; k++){
+          int a=i*N+k;
+          int b=k*N+j;
+          sum+=A[a]*B[b];
+        }
+        Cp[i*N+j]=sum;
+      }
+    }
+    gettimeofday(&end, NULL);
+
+    timeCost=1000000*(end.tv_sec-start.tv_sec)+(end.tv_usec-start.tv_usec);
+    timeCost/=1000000;
+    printf("The parallel version (%i threads) of matrix multiplication costs %lf seconds\n",
+        numthreads, timeCost);
+  }
     //////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
 	

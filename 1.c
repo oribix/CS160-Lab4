@@ -5,14 +5,18 @@
 static long numSteps = 100000;
 double step;
 
-int main(){
+int main(int argc, char * argv[]){
+  argc--; argv++;
+  int numthreads = 4;
+  if(argc > 0) numthreads = atoi(argv[0]);
+
   int i;
   double pi, sum = 0.0;
   double partialsum[numSteps];
 
   step = 1.0/(double)numSteps;
 
-  omp_set_num_threads(4);
+  omp_set_num_threads(numthreads);
   double start = omp_get_wtime();
 
   #pragma omp parallel
@@ -32,9 +36,7 @@ int main(){
 
   pi = step * sum;
 
-  double end = omp_get_wtime();
+  double runtime = omp_get_wtime() - start;
 
-  printf("time elapsed: %f seconds\n", end-start);
-
-  printf("pi = %1.16f\n", pi);
+  printf("pi = %f in %f seconds (%i threads)\n", pi, runtime, numthreads);
 }
