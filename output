@@ -1,0 +1,34 @@
+question1.out
+pi = 3.141593 in 0.003478 seconds (1 threads)
+pi = 3.141593 in 0.002421 seconds (2 threads)
+pi = 3.141593 in 0.002375 seconds (3 threads)
+pi = 3.141593 in 0.002486 seconds (4 threads)
+pi = 3.141593 in 0.002511 seconds (5 threads)
+pi = 3.141593 in 0.002443 seconds (6 threads)
+pi = 3.141593 in 0.002599 seconds (7 threads)
+pi = 3.141593 in 0.002544 seconds (8 threads)
+
+question2.out
+pi = 3.141593 in 0.002860 seconds (1 threads)
+pi = 3.141593 in 0.001508 seconds (2 threads)
+pi = 3.141593 in 0.001073 seconds (3 threads)
+pi = 3.141593 in 0.000901 seconds (4 threads)
+pi = 3.141593 in 0.000931 seconds (5 threads)
+pi = 3.141593 in 0.000755 seconds (6 threads)
+pi = 3.141593 in 0.000816 seconds (7 threads)
+pi = 3.141593 in 0.000743 seconds (8 threads)
+
+matmul.out
+Initialized successfully!
+Initialized successfully!
+Initialized successfully!
+Initialized successfully!
+The squential version of matrix multiplication costs 25.393082 seconds
+The parallel version (1 threads) of matrix multiplication costs 25.788887 seconds
+The parallel version (2 threads) of matrix multiplication costs 14.378166 seconds
+The parallel version (3 threads) of matrix multiplication costs 9.626810 seconds
+The parallel version (4 threads) of matrix multiplication costs 7.818621 seconds
+The parallel version (5 threads) of matrix multiplication costs 6.255330 seconds
+The parallel version (6 threads) of matrix multiplication costs 5.217202 seconds
+The parallel version (7 threads) of matrix multiplication costs 4.478726 seconds
+The parallel version (8 threads) of matrix multiplication costs 3.967293 seconds
